@@ -8,12 +8,21 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // PLAN:
+        // Step 1: Create a new double array with size 'length' because we need that many multiples
+        // Step 2: Use a for loop that goes from 1 to 'length' inclusive
+        // Step 3: For each loop iteration i, calculate the multiple as number * i
+        // Step 4: Store that result as index i-1 because arrays start at index 0
+        // Step 5: After the loop finishes, return the filled array
 
-        return []; // replace this return statement with your own
+        double[] multiples = new double[length];
+
+        for (int i = 1; i <= length; i++)
+        {
+            multiples[i - 1] = number * i;
+        }
+
+        return multiples;
     }
 
     /// <summary>
@@ -25,9 +34,22 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // PLAN:
+        // Step 1: If amount is 0 or equal to data.Count, the list stays the same so it can run
+        // Step 2: To rotate right, we need to take the last 'amount' elements
+        // Step 3: Remove those last 'amount' elements from the end of the list
+        // Step 4: Insert those removed elements at the beginning of the list at index 0
+        // Step 5: Because list is dynamic, modify 'data' directly and return nothing
+
+        if (amount <= 0 || amount >= data.Count) return;
+
+        // Step 2 and 3: Get the last 'amount' elements
+        List<int> lastElements = data.GetRange(data.Count - amount, amount);
+
+        // Remove them from end
+        data.RemoveRange(data.Count - amount, amount);
+
+        // Step 4: Insert them at the beginning
+        data.InsertRange(0, lastElements);
     }
 }
